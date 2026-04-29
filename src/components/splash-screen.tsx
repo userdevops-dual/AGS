@@ -68,7 +68,7 @@ export function SplashScreen() {
             </motion.div>
 
             {/* School Name with typing animation */}
-            <h1 className="text-[#1B1464] text-3xl md:text-5xl font-black tracking-tight flex items-center justify-center pb-2 h-12 md:h-16">
+            <h1 className="text-[#1B1464] text-2xl md:text-5xl font-black tracking-tight flex flex-wrap items-center justify-center pb-2 min-h-[4rem]">
               {"ABEXSUN GRAMMAR SCHOOL".split("").map((char, index) => (
                 <motion.span
                   key={index}

@@ -134,7 +134,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-2xl text-gray-500 mb-12 max-w-3xl font-medium leading-relaxed px-4 md:px-0"
+              className="text-xl md:text-2xl text-gray-500 mb-12 max-w-3xl font-medium leading-relaxed px-4 md:px-0"
             >
               Abexsun Grammar School — Always Be Excellent By Ten Sun Education System.
               <span className="md:block mt-2 text-primary font-bold">A Project of AES.</span>
