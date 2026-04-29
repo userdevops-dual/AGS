@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node -e \"if(process.env.CF_PAGES==='1') require('child_process').execSync('npx --yes @opennextjs/cloudflare@latest', {stdio: 'inherit'})\"",
     "start": "next start",
     "lint": "eslint"
   },
