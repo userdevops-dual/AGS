@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-0 md:pb-0 md:min-h-[90vh] flex items-start md:items-center justify-center overflow-hidden bg-white">
+      <section className="relative pt-12 pb-16 md:pt-0 md:pb-0 md:min-h-[90vh] flex items-start md:items-center justify-center overflow-hidden bg-white">
         {/* Subtle grid pattern for texture */}
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-50"></div>
 
