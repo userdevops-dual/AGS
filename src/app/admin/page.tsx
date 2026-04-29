@@ -80,65 +80,49 @@ export default function AdminPage() {
   const [status, setStatus] = useState<{message: string, type: 'success' | 'error'} | null>(null);
   const [dataLoaded, setDataLoaded] = useState(false);
 
-  // Auth & Session Timeout (1.5 hrs for admin)
+  // Data Persistence Logic
   useEffect(() => {
-    const NINETY_MIN = 90 * 60 * 1000;
-    const raw = localStorage.getItem('ags_admin_auth');
-    if (!raw) {
+    const auth = localStorage.getItem('ags_admin_auth');
+    if (!auth) {
       router.push('/admin/login');
-      return;
-    }
-    let auth: any;
-    try { auth = JSON.parse(raw); } catch { router.push('/admin/login'); return; }
-    if (!auth.loginTime || Date.now() - auth.loginTime >= NINETY_MIN) {
-      localStorage.removeItem('ags_admin_auth');
-      router.push('/admin/login');
-      return;
-    }
-    setIsAuth(true);
-    // Load all from localStorage
-    const load = (key: string, set: any, defaultValue: any) => {
-      const saved = localStorage.getItem(key);
-      if (saved) { set(JSON.parse(saved)); } else { set(defaultValue); }
-    };
-    load('ags_news', setNewsItems, [
-      { id: 1, title: "Board Exam Results: 98% Pass Rate!", date: "Apr 20, 2026", content: "Our students achieved outstanding results." },
-    ]);
-    load('ags_events', setEventItems, [
-      { id: 1, title: "Annual Science Fair", date: "2026-05-15", location: "Main Auditorium" },
-    ]);
-    load('ags_gallery', setGalleryItems, [
-      { id: 1, title: "Campus View", category: "Campus", url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=400" },
-    ]);
-    load('ags_notices', setNoticeItems, [
-      { id: 1, title: "Fee Submission Deadline", date: "May 10, 2026", content: "Last date for fee submission is May 10." },
-    ]);
-    load('ags_results', setResultItems, [
-      { id: 1, name: "Hania Farooq", cls: "Class 10", marks: "1085/1100", grade: "A+" },
-    ]);
-    load('ags_staff', setStaffItems, [
-      { id: 1, staffId: 'T-1001', name: "Ahmad Ali", email: "ahmad@ags.edu.pk", role: "Teacher", access: true, password: "password123" },
-    ]);
-    load('ags_classes', setClassItems, [
-      { id: 1, name: 'Class 9', capacity: '40', subjects: 'Mathematics, Physics, Chemistry, English, Urdu' },
-      { id: 2, name: 'Class 10', capacity: '40', subjects: 'Mathematics, Physics, Chemistry, English, Urdu' }
-    ]);
-    load('ags_students', setStudentItems, []);
-    setDataLoaded(true);
-
-    // Periodic session check every 60s
-    const interval = setInterval(() => {
-      const r = localStorage.getItem('ags_admin_auth');
-      if (!r) { router.replace('/admin/login'); return; }
-      try {
-        const a = JSON.parse(r);
-        if (Date.now() - a.loginTime >= NINETY_MIN) {
-          localStorage.removeItem('ags_admin_auth');
-          router.replace('/admin/login');
+    } else {
+      setIsAuth(true);
+      // Load all from localStorage
+      const load = (key: string, set: any, defaultValue: any) => {
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          set(JSON.parse(saved));
+        } else {
+          set(defaultValue);
         }
-      } catch { localStorage.removeItem('ags_admin_auth'); router.replace('/admin/login'); }
-    }, 60 * 1000);
-    return () => clearInterval(interval);
+      };
+      
+      load('ags_news', setNewsItems, [
+        { id: 1, title: "Board Exam Results: 98% Pass Rate!", date: "Apr 20, 2026", content: "Our students achieved outstanding results." },
+      ]);
+      load('ags_events', setEventItems, [
+        { id: 1, title: "Annual Science Fair", date: "2026-05-15", location: "Main Auditorium" },
+      ]);
+      load('ags_gallery', setGalleryItems, [
+        { id: 1, title: "Campus View", category: "Campus", url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=400" },
+      ]);
+      load('ags_notices', setNoticeItems, [
+        { id: 1, title: "Fee Submission Deadline", date: "May 10, 2026", content: "Last date for fee submission is May 10." },
+      ]);
+      load('ags_results', setResultItems, [
+        { id: 1, name: "Hania Farooq", cls: "Class 10", marks: "1085/1100", grade: "A+" },
+      ]);
+      load('ags_staff', setStaffItems, [
+        { id: 1, staffId: 'T-1001', name: "Ahmad Ali", email: "ahmad@ags.edu.pk", role: "Teacher", access: true, password: "password123" },
+      ]);
+      load('ags_classes', setClassItems, [
+        { id: 1, name: 'Class 9', capacity: '40', subjects: 'Mathematics, Physics, Chemistry, English, Urdu' },
+        { id: 2, name: 'Class 10', capacity: '40', subjects: 'Mathematics, Physics, Chemistry, English, Urdu' }
+      ]);
+      load('ags_students', setStudentItems, []);
+      
+      setDataLoaded(true);
+    }
   }, [router]);
 
   // Save changes to localStorage

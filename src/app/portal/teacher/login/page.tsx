@@ -32,8 +32,7 @@ export default function TeacherLogin() {
           type: 'teacher',
           id: id,
           name: found?.name || 'Staff Member',
-          role: found?.role || 'Educator',
-          loginTime: Date.now()
+          role: found?.role || 'Educator'
         }));
         router.push('/portal/teacher');
       } else {

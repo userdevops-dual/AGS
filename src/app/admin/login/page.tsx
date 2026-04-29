@@ -24,7 +24,7 @@ export default function LoginPage() {
 
     setTimeout(() => {
       if (email === 'admin@abexsun.edu' && password === 'admin123') {
-        localStorage.setItem('ags_admin_auth', JSON.stringify({ loggedIn: true, loginTime: Date.now() }));
+        localStorage.setItem('ags_admin_auth', 'true');
         router.push('/admin');
       } else {
         setError('Verification failed. Invalid credentials.');

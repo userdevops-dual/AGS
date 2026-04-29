@@ -12,32 +12,13 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   const router = useRouter();
 
   useEffect(() => {
-    const raw = localStorage.getItem('portalAuth');
-    if (!raw) {
+    const auth = localStorage.getItem('portalAuth');
+    if (!auth) {
       router.push('/portal/login');
-      return;
+    } else {
+      setIsAuth(true);
+      setUser(JSON.parse(auth));
     }
-    const auth = JSON.parse(raw);
-    const THIRTY_MIN = 30 * 60 * 1000;
-    if (!auth.loginTime || Date.now() - auth.loginTime >= THIRTY_MIN) {
-      localStorage.removeItem('portalAuth');
-      router.push('/portal/login');
-      return;
-    }
-    setIsAuth(true);
-    setUser(auth);
-
-    // Periodic check every 60 seconds
-    const interval = setInterval(() => {
-      const raw2 = localStorage.getItem('portalAuth');
-      if (!raw2) { router.replace('/portal/login'); return; }
-      const a = JSON.parse(raw2);
-      if (Date.now() - a.loginTime >= THIRTY_MIN) {
-        localStorage.removeItem('portalAuth');
-        router.replace('/portal/login');
-      }
-    }, 60 * 1000);
-    return () => clearInterval(interval);
   }, [router]);
 
   if (!isAuth) {

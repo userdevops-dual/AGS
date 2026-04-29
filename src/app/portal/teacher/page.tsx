@@ -41,14 +41,14 @@ export default function TeacherPortal() {
   const [status, setStatus] = useState<{ msg: string; type: "success" | "error" } | null>(null);
 
   useEffect(() => {
-    const THIRTY_MIN = 30 * 60 * 1000;
-    const raw = localStorage.getItem("portalAuth");
-    if (!raw) { router.push("/portal/teacher/login"); return; }
-    const parsedAuth = JSON.parse(raw);
-    if (parsedAuth.type !== "teacher") { router.push("/portal"); return; }
-    if (!parsedAuth.loginTime || Date.now() - parsedAuth.loginTime >= THIRTY_MIN) {
-      localStorage.removeItem("portalAuth");
+    const auth = localStorage.getItem("portalAuth");
+    if (!auth) {
       router.push("/portal/teacher/login");
+      return;
+    }
+    const parsedAuth = JSON.parse(auth);
+    if (parsedAuth.type !== "teacher") {
+      router.push("/portal");
       return;
     }
     
@@ -83,22 +83,7 @@ export default function TeacherPortal() {
       setTeacherRatings(JSON.parse(localStorage.getItem("ags_teacher_ratings") || "[]"));
     };
     window.addEventListener("storage", handleStorage);
-
-    // Periodic session check every 60s
-    const interval = setInterval(() => {
-      const r = localStorage.getItem("portalAuth");
-      if (!r) { router.replace("/portal/teacher/login"); return; }
-      const a = JSON.parse(r);
-      if (Date.now() - a.loginTime >= THIRTY_MIN) {
-        localStorage.removeItem("portalAuth");
-        router.replace("/portal/teacher/login");
-      }
-    }, 60 * 1000);
-
-    return () => {
-      window.removeEventListener("storage", handleStorage);
-      clearInterval(interval);
-    };
+    return () => window.removeEventListener("storage", handleStorage);
   }, [router]);
 
   const handleLogout = () => {
