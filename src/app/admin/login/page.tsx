@@ -110,7 +110,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@abexsun.edu" 
-                    className="w-full pl-14 pr-5 py-4.5 bg-[#F8FAFC] border-2 border-transparent rounded-2xl outline-none focus:bg-white focus:border-[#1B1464] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
+                    className="w-full pl-14 pr-5 py-4.5 bg-white border-2 border-black rounded-2xl outline-none focus:border-[#00AEEF] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
                   />
                 </div>
               </div>
@@ -136,7 +136,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••" 
-                    className="w-full pl-14 pr-12 py-4.5 bg-[#F8FAFC] border-2 border-transparent rounded-2xl outline-none focus:bg-white focus:border-[#1B1464] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
+                    className="w-full pl-14 pr-12 py-4.5 bg-white border-2 border-black rounded-2xl outline-none focus:border-[#00AEEF] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
                   />
                   <button 
                     type="button"

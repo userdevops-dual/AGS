@@ -139,7 +139,7 @@ function LoginForm() {
                   value={id}
                   onChange={(e) => setId(e.target.value)}
                   placeholder={isStudent ? "AG-2026-001" : isTeacher ? "Staff ID" : "Parent ID"}
-                  className="w-full pl-14 pr-5 py-4 rounded-2xl bg-[#F8FAFC] border-2 border-transparent outline-none focus:bg-white focus:border-[#1B1464] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
+                  className="w-full pl-14 pr-5 py-4 rounded-2xl bg-white border-2 border-black outline-none focus:border-[#00AEEF] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-14 pr-12 py-4 rounded-2xl bg-[#F8FAFC] border-2 border-transparent outline-none focus:bg-white focus:border-[#1B1464] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
+                  className="w-full pl-14 pr-12 py-4 rounded-2xl bg-white border-2 border-black outline-none focus:border-[#00AEEF] transition-all font-bold text-sm text-[#1B1464] placeholder:text-[#1B1464]/10"
                 />
                 <button 
                   type="button"
