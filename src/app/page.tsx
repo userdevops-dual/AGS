@@ -253,8 +253,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
-      </section>
 
       {/* Why Choose Us */}
       <section className="py-2 bg-white">
