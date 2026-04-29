@@ -11,14 +11,15 @@ import {
   Search,
   Filter,
   Save,
-  Check
+  Check,
+  TrendingUp
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function TeacherDashboard() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
-  const [activeMode, setActiveMode] = useState<'attendance' | 'marks'>('attendance');
+  const [activeMode, setActiveMode] = useState<'attendance' | 'marks' | 'performance'>('attendance');
   const [selectedClass, setSelectedClass] = useState('Class 10');
 
   const [students, setStudents] = useState([
