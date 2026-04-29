@@ -596,7 +596,8 @@ export default function AdminPage() {
                   </div>
                 </div>
 
-                <table className="w-full">
+                <div className="overflow-x-auto custom-scrollbar">
+                  <table className="w-full min-w-[800px]">
                   <thead>
                     <tr className="bg-primary text-white">
                       <th className="px-8 py-5 text-left text-[10px] font-black uppercase tracking-widest">Rank</th>
