@@ -4,9 +4,17 @@ import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
 const staticImages = [
-  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.00%20AM.jpeg", category: "Campus" },
-  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.01%20AM.jpeg", category: "Classroom" },
-  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.02%20AM%20(1).jpeg", category: "Events" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.00%20AM.jpeg", category: "Campus", title: "School Building" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.01%20AM.jpeg", category: "Classroom", title: "Learning Environment" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.02%20AM%20(1).jpeg", category: "Events", title: "Student Activities" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.14%20AM.jpeg", category: "Campus", title: "School Entrance" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.15%20AM.jpeg", category: "Classroom", title: "Interactive Session" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.16%20AM.jpeg", category: "Events", title: "Prize Distribution" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.17%20AM.jpeg", category: "Campus", title: "Main Campus" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-28%20at%207.25.50%20PM.jpeg", category: "Classroom", title: "Primary Class" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-28%20at%207.25.58%20PM.jpeg", category: "Events", title: "School Assembly" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.15%20AM%20(1).jpeg", category: "Classroom", title: "Computer Lab" },
+  { src: "/images/AnyDesk/WhatsApp%20Image%202026-04-27%20at%202.13.16%20AM%20(1).jpeg", category: "Campus", title: "Playground" },
 ];
 
 export default function GalleryPage() {

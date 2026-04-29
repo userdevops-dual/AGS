@@ -188,7 +188,7 @@ export default function Home() {
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/AnyDesk/WhatsApp Image 2026-04-28 at 7.25.50 PM.jpeg"
+                  src="/images/ags1.jpeg"
                   alt="Students studying"
                   width={800}
                   height={600}
@@ -292,9 +292,9 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "Primary Section", grades: "Nursery – Class 5", desc: "Building foundational literacy, numeracy, and creative skills through play-based and structured learning.", img: "/images/AnyDesk/WhatsApp Image 2026-04-27 at 2.13.14 AM.jpeg" },
-              { title: "Middle Section", grades: "Class 6 – Class 8", desc: "Strengthening analytical thinking, scientific inquiry, and language proficiency for academic growth.", img: "/images/AnyDesk/WhatsApp Image 2026-04-27 at 2.13.15 AM.jpeg" },
-              { title: "Senior Section", grades: "Class 9 – Class 12", desc: "Preparing students for board exams, competitive tests, and higher education with focused mentorship.", img: "/images/AnyDesk/WhatsApp Image 2026-04-27 at 2.13.16 AM.jpeg" },
+              { title: "Primary Section", grades: "Nursery – Class 5", desc: "Building foundational literacy, numeracy, and creative skills through play-based and structured learning.", img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" },
+              { title: "Middle Section", grades: "Class 6 – Class 8", desc: "Strengthening analytical thinking, scientific inquiry, and language proficiency for academic growth.", img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2064&auto=format&fit=crop" },
+              { title: "Senior Section", grades: "Class 9 – Class 12", desc: "Preparing students for board exams, competitive tests, and higher education with focused mentorship.", img: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070&auto=format&fit=crop" },
             ].map((prog, i) => (
               <div key={i} className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 group">
                 <div className="relative h-52 overflow-hidden">
