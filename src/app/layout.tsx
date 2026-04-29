@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { SplashScreen } from "@/components/splash-screen";
@@ -43,7 +44,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white text-[15px]`}>
         <SplashScreen />
-        <PageLoader />
+        <Suspense fallback={null}>
+          <PageLoader />
+        </Suspense>
         <MainLayoutWrapper>
           {children}
         </MainLayoutWrapper>
