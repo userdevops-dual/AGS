@@ -123,7 +123,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-[2.2rem] leading-[1] sm:text-5xl md:text-8xl font-black text-primary mb-4 md:mb-8 md:leading-[1.05] tracking-tighter"
+              className="text-5xl md:text-8xl font-black text-primary mb-4 md:mb-8 leading-[1.05] tracking-tighter"
               style={{ fontFamily: "'Segoe UI', Arial, Helvetica, sans-serif" }}
             >
               Nurturing <span className="text-secondary [-webkit-text-stroke:1px_#1B1464] md:[-webkit-text-stroke:2px_#1B1464]">Excellence</span> <br />

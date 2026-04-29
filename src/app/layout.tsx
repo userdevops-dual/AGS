@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   },
   description: "Abexsun Grammar School — Always Be Excellent By Ten Sun Education System. Located Behind Shalimar Hospital, Mughalpura, Lahore. A project of AES providing quality education from Nursery to Class 12.",
   keywords: ["Abexsun Grammar School", "AGS", "school", "education", "admission", "grammar school", "Ten Sun Education System", "AES", "Mughalpura", "Lahore"],
+  icons: {
+    icon: [
+      { url: '/logo.png' }
+    ]
+  },
   openGraph: {
     title: "Abexsun Grammar School | Always Be Excellent",
     description: "Abexsun Grammar School — Quality education from Nursery to Class 12. A project of AES.",
