@@ -123,7 +123,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-8xl sm:text-9xl md:text-8xl font-black text-primary mb-4 md:mb-8 leading-[1] md:leading-[1.05] tracking-tighter"
+              className="text-6xl sm:text-7xl md:text-8xl font-black text-primary mb-4 md:mb-8 leading-[1.05] tracking-tighter"
               style={{ fontFamily: "'Segoe UI', Arial, Helvetica, sans-serif" }}
             >
               Nurturing <span className="text-secondary [-webkit-text-stroke:1px_#1B1464] md:[-webkit-text-stroke:2px_#1B1464]">Excellence</span> <br />
@@ -182,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col-reverse md:flex-row items-center gap-16">
             <div className="md:w-1/2">
@@ -231,7 +231,7 @@ export default function Home() {
       </section>
       
       {/* Stats Section - Mobile/Tablet Only (Below Empower Section) */}
-      <section className="relative px-4 py-10 md:hidden bg-white">
+      <section className="relative px-4 py-4 md:hidden bg-white">
         <div className="container mx-auto max-w-4xl bg-white py-6 px-4 relative overflow-hidden border-t border-b border-black">
           <div className="grid grid-cols-4 gap-1 text-center divide-x divide-gray-100 relative z-10">
             {[
@@ -256,7 +256,7 @@ export default function Home() {
 
 
       {/* Why Choose Us */}
-      <section className="py-2 bg-white">
+      <section className="py-8 md:py-2 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-4">
             <h4 className="text-secondary font-bold tracking-wider uppercase mb-2">Why Abexsun?</h4>
@@ -283,7 +283,7 @@ export default function Home() {
       </section>
 
       {/* Academic Programs */}
-      <section className="py-2 bg-white">
+      <section className="py-8 md:py-2 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-4">
             <h4 className="text-secondary font-bold tracking-wider uppercase mb-2">Our Programs</h4>
