@@ -88,7 +88,7 @@ export default function TeacherLogin() {
             <div className="space-y-2">
               <label className="text-[10px] font-black text-[#1B1464]/30 uppercase tracking-[0.2em] ml-2">Staff Identifier</label>
               <div className="relative group">
-                <User className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1B1464]/20 group-focus-within:text-[#1B1464] transition-colors" size={20} />
+                <User className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1B1464]/60 group-focus-within:text-[#1B1464] transition-colors" size={20} />
                 <input 
                   type="text" 
                   required 
@@ -103,7 +103,7 @@ export default function TeacherLogin() {
             <div className="space-y-2">
               <label className="text-[10px] font-black text-[#1B1464]/30 uppercase tracking-[0.2em] ml-2">Security Key</label>
               <div className="relative group">
-                <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1B1464]/20 group-focus-within:text-[#1B1464] transition-colors" size={20} />
+                <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-[#1B1464]/60 group-focus-within:text-[#1B1464] transition-colors" size={20} />
                 <input 
                   type={showPassword ? "text" : "password"} 
                   required 

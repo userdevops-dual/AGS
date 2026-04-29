@@ -101,7 +101,7 @@ export default function LoginPage() {
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-[#1B1464]/30 uppercase tracking-[0.2em] ml-2">Authorized Email</label>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-[#1B1464]/20 group-focus-within:text-[#1B1464] transition-colors">
+                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-[#1B1464]/60 group-focus-within:text-[#1B1464] transition-colors">
                     <User size={20} />
                   </div>
                   <input 
@@ -127,7 +127,7 @@ export default function LoginPage() {
                   </button>
                 </div>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-[#1B1464]/20 group-focus-within:text-[#1B1464] transition-colors">
+                  <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-[#1B1464]/60 group-focus-within:text-[#1B1464] transition-colors">
                     <Lock size={20} />
                   </div>
                   <input 

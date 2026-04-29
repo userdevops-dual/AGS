@@ -62,7 +62,7 @@ export default function PortalEntry() {
           <Link href="/portal/login?type=student" className="group">
             <motion.div 
               whileHover={{ y: -8 }}
-              className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border-2 border-transparent hover:border-[#1B1464] transition-all duration-500 h-full flex flex-col relative overflow-hidden"
+              className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border-2 border-black hover:border-[#1B1464] transition-all duration-500 h-full flex flex-col relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#1B1464]/5 rounded-bl-[4rem] -mr-8 -mt-8 group-hover:bg-[#1B1464] transition-colors duration-500 flex items-center justify-center pt-6 pl-6">
                  <GraduationCap size={24} className="text-[#1B1464] group-hover:text-white transition-colors" />
