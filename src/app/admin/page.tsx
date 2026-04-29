@@ -649,8 +649,8 @@ export default function AdminPage() {
 
           {/* Staff */}
           {activeTab === 'staff' && (
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <table className="w-full">
+            <div className="bg-white rounded-xl shadow-md overflow-x-auto custom-scrollbar">
+              <table className="w-full min-w-[800px]">
                 <thead className="bg-primary text-white">
                   <tr>
                     <th className="px-5 py-3 text-left text-sm">Staff ID</th>
@@ -759,8 +759,8 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                <table className="w-full">
+              <div className="bg-white rounded-xl shadow-md overflow-x-auto custom-scrollbar">
+                <table className="w-full min-w-[800px]">
                   <thead className="bg-primary text-white">
                     <tr>
                       <th className="px-5 py-3 text-left text-sm">Student ID</th>

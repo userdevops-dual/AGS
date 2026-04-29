@@ -364,8 +364,8 @@ export default function TeacherPortal() {
                   </button>
                 </div>
                 
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left">
+                <div className="overflow-x-auto custom-scrollbar">
+                  <table className="w-full min-w-[700px] text-left">
                     <thead className="bg-gray-50 border-b border-gray-100">
                       <tr>
                         <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400">Roll No</th>
