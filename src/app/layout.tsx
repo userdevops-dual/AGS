@@ -13,6 +13,9 @@ const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600', '
 
 export const viewport: Viewport = {
   themeColor: '#1B1464',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export const metadata: Metadata = {
@@ -53,6 +56,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/logo.png" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <meta name="theme-color" content="#1B1464" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="msapplication-navbutton-color" content="#1B1464" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white text-[15px]`}>
         <SplashScreen />

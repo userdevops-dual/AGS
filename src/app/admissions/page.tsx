@@ -24,9 +24,9 @@ export default function AdmissionsPage() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "740f9242-7065-4f71-92be-5a33758b97d8", 
-          subject: `New Admission Application: ${formData.studentName}`,
-          from_name: "Abexsun School Website",
+          access_key: "YOUR_TEST_ACCESS_KEY_HERE", // Go to web3forms.com and get a key for abdulraheemcrown5858@gmail.com
+          subject: `TESTING - New Admission Application: ${formData.studentName}`,
+          from_name: "AGS Test Application",
           ...formData,
         }),
       });
