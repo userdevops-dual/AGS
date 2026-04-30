@@ -51,7 +51,6 @@ export function MainLayoutWrapper({ children }: { children: React.ReactNode }) {
                   { label: "Academics", href: "/academics" },
                   { label: "Admissions", href: "/admissions" },
                   { label: "Gallery", href: "/gallery" },
-                  { label: "Results", href: "/results" },
                   { label: "Contact", href: "/contact" },
                 ].map((link, i) => (
                   <li key={i}>
