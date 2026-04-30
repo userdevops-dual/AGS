@@ -46,6 +46,8 @@ export default function RootLayout({
     <html lang="en" style={{ fontSize: '14px' }}>
       <head>
         <link rel="icon" href="/logo.png" />
+        <link rel="shortcut icon" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white text-[15px]`}>
         <SplashScreen />

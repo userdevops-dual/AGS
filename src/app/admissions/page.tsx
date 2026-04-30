@@ -10,10 +10,37 @@ export default function AdmissionsPage() {
     dob: '', gender: '', previousSchool: '', address: '', message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "740f9242-7065-4f71-92be-5a33758b97d8", 
+          subject: `New Admission Application: ${formData.studentName}`,
+          from_name: "Abexsun School Website",
+          ...formData,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Submission failed. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -148,8 +175,13 @@ export default function AdmissionsPage() {
                   <label className="block text-sm font-bold text-gray-700 mb-2">Additional Notes</label>
                   <textarea rows={3} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 resize-none"></textarea>
                 </div>
-                <button type="submit" className="w-full py-4 bg-primary text-white font-bold text-lg rounded-xl hover:bg-primary/90 transition-colors shadow-lg flex items-center justify-center gap-2">
-                  Submit Application <ArrowRight size={20} />
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className={`w-full py-4 text-white font-bold text-lg rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 hover:scale-[1.02]'}`}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                  {!isSubmitting && <ArrowRight size={20} />}
                 </button>
               </form>
             )}
