@@ -197,8 +197,8 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8">
                   <div className="text-white">
-                    <h3 className="text-2xl font-bold mb-2 drop-shadow-md">Excellence Since 1995</h3>
-                    <p className="drop-shadow-md font-medium">Over 25 years of educational distinction.</p>
+                    <h3 className="text-xl md:text-2xl font-bold mb-2 drop-shadow-md">Excellence Since 1995</h3>
+                    <p className="text-xs md:text-base drop-shadow-md font-medium">Over 25 years of educational distinction.</p>
                   </div>
                 </div>
               </div>

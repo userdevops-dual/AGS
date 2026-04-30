@@ -23,19 +23,20 @@ export default function GalleryPage() {
   const [gallery, setGallery] = useState<any[]>([]);
 
   useEffect(() => {
+    let combinedGallery = [...staticImages];
     const saved = localStorage.getItem('ags_gallery');
     if (saved) {
       const parsed = JSON.parse(saved);
       if (parsed.length > 0) {
-        setGallery(parsed.map((item: any) => ({
+        const customImages = parsed.map((item: any) => ({
           src: item.url,
           category: item.category,
           title: item.title
-        })));
-        return;
+        }));
+        combinedGallery = [...customImages, ...staticImages];
       }
     }
-    setGallery(staticImages);
+    setGallery(combinedGallery);
   }, []);
 
   const categories = ["All", ...Array.from(new Set(gallery.map(i => i.category)))];
