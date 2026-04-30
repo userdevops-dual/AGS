@@ -23,7 +23,7 @@ export default function LoginPage() {
     setError('');
 
     setTimeout(() => {
-      if (email === 'admin@abexsun.edu' && password === 'admin123') {
+      if (email === 'admin@abexsun.edu' && password === 'abexsun.admin@7867') {
         localStorage.setItem('ags_admin_auth', 'true');
         router.push('/admin');
       } else {
