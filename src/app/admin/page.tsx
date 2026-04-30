@@ -26,7 +26,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-type Tab = 'dashboard' | 'news' | 'events' | 'gallery' | 'notices' | 'results' | 'staff' | 'students' | 'classes';
+type Tab = 'dashboard' | 'news' | 'events' | 'gallery' | 'notices' | 'results' | 'staff' | 'students' | 'classes' | 'downloads';
 
 interface NewsItem { id: number; title: string; date: string; content: string; }
 interface EventItem { id: number; title: string; date: string; location: string; }
@@ -54,6 +54,7 @@ interface StudentItem {
   password?: string; 
   parentPassword?: string; 
 }
+interface DownloadItem { id: number; name: string; category: string; url: string; size: string; date: string; }
 
 export default function AdminPage() {
   const router = useRouter();
@@ -72,6 +73,7 @@ export default function AdminPage() {
   const [staffItems, setStaffItems] = useState<StaffItem[]>([]);
   const [studentItems, setStudentItems] = useState<StudentItem[]>([]);
   const [classItems, setClassItems] = useState<any[]>([]);
+  const [downloadItems, setDownloadItems] = useState<DownloadItem[]>([]);
 
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<Tab>('news');
@@ -120,6 +122,7 @@ export default function AdminPage() {
         { id: 2, name: 'Class 10', capacity: '40', subjects: 'Mathematics, Physics, Chemistry, English, Urdu' }
       ]);
       load('ags_students', setStudentItems, []);
+      load('ags_downloads', setDownloadItems, []);
       
       setDataLoaded(true);
     }
@@ -138,6 +141,7 @@ export default function AdminPage() {
       save('ags_staff', staffItems);
       save('ags_classes', classItems);
       save('ags_students', studentItems);
+      save('ags_downloads', downloadItems);
     } catch (err) {
       console.error(err);
       setStatus({ message: 'Storage Full! Delete old items or use smaller images.', type: 'error' });
@@ -255,6 +259,13 @@ export default function AdminPage() {
                 parentPassword: formData.parentPassword || 'parent123'
             }, ...studentItems]);
             break;
+          case 'downloads':
+            setDownloadItems([{ 
+                id, 
+                date: new Date().toLocaleDateString(), 
+                ...formData 
+            }, ...downloadItems]);
+            break;
         }
         setStatus({ message: 'Added Successfully!', type: 'success' });
       }
@@ -286,6 +297,7 @@ export default function AdminPage() {
     { key: 'gallery', label: 'Gallery', icon: ImageIcon },
     { key: 'notices', label: 'Notices', icon: Bell },
     { key: 'results', label: 'Results', icon: Trophy },
+    { key: 'downloads', label: 'Downloads', icon: Upload },
   ];
 
   return (
@@ -791,6 +803,52 @@ export default function AdminPage() {
               </div>
             </div>
           )}
+
+          {/* Downloads */}
+          {activeTab === 'downloads' && (
+            <div className="bg-white rounded-xl shadow-md overflow-x-auto custom-scrollbar">
+              <table className="w-full min-w-[800px]">
+                <thead className="bg-primary text-white">
+                  <tr>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Document Name</th>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Category / Class</th>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Date</th>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Size</th>
+                    <th className="px-5 py-3 text-right text-sm font-black uppercase tracking-widest">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {downloadItems.map((item) => (
+                    <tr key={item.id} className="border-b hover:bg-gray-50 group">
+                      <td className="px-5 py-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-red-50 text-red-500 rounded-lg flex items-center justify-center">
+                            <Newspaper size={18} />
+                          </div>
+                          <span className="font-bold text-primary">{item.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-5 py-3">
+                         <span className="px-3 py-1 bg-gray-100 rounded-full text-[10px] font-black text-gray-500 uppercase tracking-widest">{item.category}</span>
+                      </td>
+                      <td className="px-5 py-3 text-sm text-gray-500 font-bold">{item.date}</td>
+                      <td className="px-5 py-3 text-sm text-gray-500 font-bold">{item.size}</td>
+                      <td className="px-5 py-3">
+                        <div className="flex gap-2 justify-end">
+                          <button onClick={() => setDownloadItems(downloadItems.filter(d => d.id !== item.id))} className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {downloadItems.length === 0 && (
+                <div className="p-10 text-center text-gray-400 font-bold uppercase tracking-widest">No documents uploaded yet</div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -1019,6 +1077,83 @@ export default function AdminPage() {
                        <div className="relative flex justify-center text-[10px]"><span className="px-2 bg-white text-gray-400 font-black uppercase tracking-widest">OR PASTE URL</span></div>
                     </div>
                     <input placeholder="https://example.com/image.jpg" value={formData.url || ''} onChange={e => setFormData({...formData, url: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none focus:border-secondary text-xs font-medium" />
+                  </div>
+                </>
+              ) : modalType === 'downloads' ? (
+                <>
+                  <div className="space-y-4">
+                    <div className="space-y-1">
+                      <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Document Name</label>
+                      <input placeholder="e.g. Admission Form 2026" value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none focus:border-secondary font-bold text-primary" />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Class Category</label>
+                      <select value={formData.category || ''} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none focus:border-secondary font-bold text-primary">
+                        <option value="" disabled>Select Category</option>
+                        <option value="General">General</option>
+                        {classItems.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
+                      </select>
+                    </div>
+                    <div 
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        e.currentTarget.classList.add('border-secondary', 'bg-secondary/5');
+                      }}
+                      onDragLeave={(e) => {
+                        e.preventDefault();
+                        e.currentTarget.classList.remove('border-secondary', 'bg-secondary/5');
+                      }}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        e.currentTarget.classList.remove('border-secondary', 'bg-secondary/5');
+                        const file = e.dataTransfer.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setFormData({ 
+                              ...formData, 
+                              url: reader.result as string, 
+                              size: (file.size / 1024).toFixed(0) + ' KB',
+                              fileName: file.name
+                            });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      onClick={() => document.getElementById('file-upload-doc')?.click()}
+                      className="border-2 border-dashed border-gray-200 rounded-[2rem] p-10 text-center hover:border-secondary hover:bg-secondary/5 transition-all cursor-pointer group relative"
+                    >
+                      <input 
+                        id="file-upload-doc"
+                        type="file" 
+                        accept=".pdf,.doc,.docx"
+                        className="hidden" 
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setFormData({ 
+                                ...formData, 
+                                url: reader.result as string, 
+                                size: (file.size / 1024).toFixed(0) + ' KB',
+                                fileName: file.name
+                              });
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                      />
+                      <div className="flex flex-col items-center">
+                        <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 group-hover:bg-secondary/10 group-hover:text-secondary transition-all mb-4">
+                           <Upload size={32} />
+                        </div>
+                        <p className="font-black text-primary uppercase tracking-tight text-sm">
+                          {formData.fileName ? formData.fileName : 'Choose PDF or Drag & Drop'}
+                        </p>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Maximum 5MB Recommended</p>
+                      </div>
+                    </div>
                   </div>
                 </>
               ) : modalType === 'events' ? (
