@@ -23,10 +23,11 @@ import {
   Search,
   Medal,
   Award,
-  AlertCircle
+  AlertCircle,
+  MessageCircle
 } from 'lucide-react';
 
-type Tab = 'dashboard' | 'news' | 'events' | 'gallery' | 'notices' | 'results' | 'staff' | 'students' | 'classes' | 'downloads';
+type Tab = 'dashboard' | 'news' | 'events' | 'gallery' | 'notices' | 'results' | 'staff' | 'students' | 'classes' | 'downloads' | 'inquiries';
 
 interface NewsItem { id: number; title: string; date: string; content: string; }
 interface EventItem { id: number; title: string; date: string; location: string; }
@@ -55,6 +56,7 @@ interface StudentItem {
   parentPassword?: string; 
 }
 interface DownloadItem { id: number; name: string; category: string; url: string; size: string; date: string; }
+interface InquiryItem { id: number; name: string; email: string; subject: string; message: string; date: string; phone?: string; status: string; }
 
 export default function AdminPage() {
   const router = useRouter();
@@ -74,6 +76,7 @@ export default function AdminPage() {
   const [studentItems, setStudentItems] = useState<StudentItem[]>([]);
   const [classItems, setClassItems] = useState<any[]>([]);
   const [downloadItems, setDownloadItems] = useState<DownloadItem[]>([]);
+  const [inquiryItems, setInquiryItems] = useState<InquiryItem[]>([]);
 
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<Tab>('news');
@@ -123,6 +126,7 @@ export default function AdminPage() {
       ]);
       load('ags_students', setStudentItems, []);
       load('ags_downloads', setDownloadItems, []);
+      load('ags_inquiries', setInquiryItems, []);
       
       setDataLoaded(true);
     }
@@ -142,12 +146,13 @@ export default function AdminPage() {
       save('ags_classes', classItems);
       save('ags_students', studentItems);
       save('ags_downloads', downloadItems);
+      save('ags_inquiries', inquiryItems);
     } catch (err) {
       console.error(err);
       setStatus({ message: 'Storage Full! Delete old items or use smaller images.', type: 'error' });
       setTimeout(() => setStatus(null), 5000);
     }
-  }, [newsItems, eventItems, galleryItems, noticeItems, resultItems, staffItems, studentItems, classItems, dataLoaded]);
+  }, [newsItems, eventItems, galleryItems, noticeItems, resultItems, staffItems, studentItems, classItems, downloadItems, inquiryItems, dataLoaded]);
 
   const handleLogout = () => {
     localStorage.removeItem('ags_admin_auth');
@@ -298,6 +303,7 @@ export default function AdminPage() {
     { key: 'notices', label: 'Notices', icon: Bell },
     { key: 'results', label: 'Results', icon: Trophy },
     { key: 'downloads', label: 'Downloads', icon: Upload },
+    { key: 'inquiries', label: 'Queries', icon: MessageCircle },
   ];
 
   return (
@@ -698,6 +704,54 @@ export default function AdminPage() {
                       </td>
                     </tr>
                   ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Inquiries */}
+          {activeTab === 'inquiries' && (
+            <div className="bg-white rounded-xl shadow-md overflow-x-auto custom-scrollbar">
+              <table className="w-full min-w-[800px]">
+                <thead className="bg-primary text-white">
+                  <tr>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Sender Details</th>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Subject</th>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Message</th>
+                    <th className="px-5 py-3 text-left text-sm font-black uppercase tracking-widest">Date</th>
+                    <th className="px-5 py-3 text-right text-sm font-black uppercase tracking-widest">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {inquiryItems.length > 0 ? inquiryItems.map((item) => (
+                    <tr key={item.id} className="border-b hover:bg-gray-50 group">
+                      <td className="px-5 py-3">
+                        <div className="flex flex-col">
+                          <span className="font-bold text-primary">{item.name}</span>
+                          <span className="text-[10px] text-gray-400 font-bold">{item.email}</span>
+                          {item.phone && <span className="text-[10px] text-secondary font-black">{item.phone}</span>}
+                        </div>
+                      </td>
+                      <td className="px-5 py-3">
+                         <span className="font-bold text-primary text-sm">{item.subject}</span>
+                      </td>
+                      <td className="px-5 py-3">
+                         <p className="text-xs text-gray-600 line-clamp-2 max-w-xs">{item.message}</p>
+                      </td>
+                      <td className="px-5 py-3 text-[10px] text-gray-500 font-black uppercase tracking-widest">{item.date}</td>
+                      <td className="px-5 py-3">
+                        <div className="flex gap-2 justify-end">
+                          <button onClick={() => setInquiryItems(inquiryItems.filter(i => i.id !== item.id))} className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )) : (
+                    <tr>
+                      <td colSpan={5} className="px-5 py-10 text-center text-gray-400 font-bold uppercase tracking-widest text-sm">No Queries Found</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>

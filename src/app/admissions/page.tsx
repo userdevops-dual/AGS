@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight, FileText, Calendar } from 'lucide-react';
+import { CheckCircle, ArrowRight, FileText, User, Mail, Phone, Calendar, MapPin, School, GraduationCap } from 'lucide-react';
 
 export default function AdmissionsPage() {
   const [formData, setFormData] = useState({
@@ -25,8 +25,8 @@ export default function AdmissionsPage() {
         },
         body: JSON.stringify({
           access_key: "YOUR_TEST_ACCESS_KEY_HERE", // Go to web3forms.com and get a key for abdulraheemcrown5858@gmail.com
-          subject: `TESTING - New Admission Application: ${formData.studentName}`,
-          from_name: "AGS Test Application",
+          subject: `New Admission Application: ${formData.studentName}`,
+          from_name: "Abexsun School Website",
           ...formData,
         }),
       });
@@ -44,150 +44,187 @@ export default function AdmissionsPage() {
   };
 
   return (
-    <>
+    <div className="bg-white min-h-screen">
       {/* Hero Banner */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center bg-white border-b border-gray-100 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
+      <section className="relative h-[45vh] min-h-[350px] flex items-center justify-center bg-[#1B1464] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent opacity-30"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="text-3xl md:text-7xl font-black text-primary mb-4 tracking-tighter">Admissions</h1>
-            <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-medium px-4">Always Be Excellent By Ten Sun Education System. A Project of AES.</p>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white font-black text-[10px] uppercase tracking-[0.3em] mb-6 border border-white/20 backdrop-blur-md">
+              Admissions Open 2026
+            </span>
+            <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter">Join Our Legacy</h1>
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-medium">Start your child's journey towards excellence with Abexsun Education System.</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-20 bg-white">
+      {/* Main Content Area */}
+      <section className="py-20 -mt-20 relative z-20">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h4 className="text-secondary font-bold tracking-wider uppercase mb-2">How It Works</h4>
-            <h2 className="text-4xl font-extrabold text-primary mb-6">Admission Process</h2>
-          </div>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "Submit Application", desc: "Fill out the online admission form with required details." },
-              { step: "02", title: "Document Verification", desc: "Submit required documents for verification and review." },
-              { step: "03", title: "Entrance Assessment", desc: "Student takes a placement test (class-appropriate)." },
-              { step: "04", title: "Enrollment Confirmed", desc: "Pay fees and receive your admission confirmation letter." },
-            ].map((item, i) => (
-              <div key={i} className="text-center relative">
-                <div className="w-16 h-16 bg-secondary text-primary rounded-full flex items-center justify-center text-2xl font-extrabold mx-auto mb-4 shadow-lg">
-                  {item.step}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-12">
+              
+              {/* Left Side: Info & Process */}
+              <div className="lg:col-span-1 space-y-10">
+                <div>
+                  <h3 className="text-2xl font-black text-[#1B1464] uppercase tracking-tight mb-6">The Process</h3>
+                  <div className="space-y-8">
+                    {[
+                      { step: "01", title: "Apply Online", desc: "Complete the digital application form." },
+                      { step: "02", title: "Verification", desc: "Submit required documents for review." },
+                      { step: "03", title: "Assessment", desc: "Student placement evaluation." },
+                      { step: "04", title: "Confirmation", desc: "Finalize enrollment and fee payment." },
+                    ].map((item, i) => (
+                      <div key={i} className="flex gap-5 group">
+                        <div className="w-12 h-12 bg-gray-50 text-[#1B1464] rounded-2xl flex items-center justify-center font-black text-lg border border-gray-100 group-hover:bg-[#00AEEF] group-hover:text-white transition-all shadow-sm">
+                          {item.step}
+                        </div>
+                        <div>
+                          <h4 className="font-black text-[#1B1464] uppercase tracking-wide text-sm">{item.title}</h4>
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
-                {i < 3 && <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-gray-200"></div>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Required Documents */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-primary mb-8 text-center">Required Documents</h2>
-          <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "Birth Certificate", "Previous Report Cards", "Transfer Certificate",
-              "Passport-size Photos (4)", "Parent's CNIC/ID Copy", "Medical Fitness Certificate",
-              "Residence Proof", "Character Certificate"
-            ].map((doc, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
-                <FileText className="text-secondary flex-shrink-0" size={20} />
-                <span className="text-gray-700 font-medium">{doc}</span>
+                <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+                  <h3 className="text-xl font-black text-[#1B1464] uppercase tracking-tight mb-4 flex items-center gap-2">
+                    <FileText className="text-[#00AEEF]" size={24} /> Documents
+                  </h3>
+                  <ul className="space-y-3">
+                    {["Birth Certificate", "Previous School Record", "Passport Size Photos", "Parent CNIC Copy"].map((doc, i) => (
+                      <li key={i} className="flex items-center gap-3 text-xs font-bold text-gray-600">
+                        <CheckCircle size={14} className="text-green-500" /> {doc}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Application Form */}
-      <section className="py-20 bg-white" id="apply">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <h4 className="text-secondary font-bold tracking-wider uppercase mb-2">Apply Online</h4>
-              <h2 className="text-4xl font-extrabold text-primary mb-4">Admission Application Form</h2>
-              <p className="text-gray-600">Fill in the details below. Our team will contact you within 48 hours.</p>
+              {/* Right Side: The Form */}
+              <div className="lg:col-span-2">
+                <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-[0_32px_64px_-16px_rgba(27,20,100,0.1)] border border-gray-100">
+                  {submitted ? (
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-20">
+                      <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="text-[#25D366]" size={48} />
+                      </div>
+                      <h2 className="text-4xl font-black text-[#1B1464] mb-4">Application Received</h2>
+                      <p className="text-gray-500 font-medium text-lg">Thank you for choosing Abexsun. Our admissions officer will contact you within 48 hours.</p>
+                      <button onClick={() => window.location.reload()} className="mt-10 px-8 py-3 bg-[#1B1464] text-white font-black text-xs uppercase tracking-widest rounded-xl hover:bg-[#00AEEF] transition-all">Submit Another</button>
+                    </motion.div>
+                  ) : (
+                    <>
+                      <div className="mb-10">
+                        <h2 className="text-3xl font-black text-[#1B1464] uppercase tracking-tighter mb-2">Admission Form</h2>
+                        <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">Enrollment for Session 2026-27</p>
+                      </div>
+
+                      <form onSubmit={handleSubmit} className="space-y-8">
+                        {/* Student Info Section */}
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-3 pb-2 border-b border-gray-50">
+                            <User size={18} className="text-[#00AEEF]" />
+                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Student Information</span>
+                          </div>
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div className="space-y-1.5">
+                              <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Student Full Name *</label>
+                              <input type="text" required value={formData.studentName} onChange={e => setFormData({...formData, studentName: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Class Applying For *</label>
+                              <select required value={formData.classApplying} onChange={e => setFormData({...formData, classApplying: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary">
+                                <option value="">Select Class</option>
+                                {["Nursery", "KG", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10"].map(c => (
+                                  <option key={c} value={c}>{c}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div className="space-y-1.5">
+                              <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Date of Birth *</label>
+                              <div className="relative">
+                                <input type="date" required value={formData.dob} onChange={e => setFormData({...formData, dob: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary" />
+                              </div>
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Gender *</label>
+                              <select required value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary">
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Guardian Info Section */}
+                        <div className="space-y-6 pt-4">
+                          <div className="flex items-center gap-3 pb-2 border-b border-gray-50">
+                            <Mail size={18} className="text-[#00AEEF]" />
+                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Guardian Information</span>
+                          </div>
+                          <div className="grid md:grid-cols-2 gap-6">
+                            <div className="space-y-1.5">
+                              <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Parent/Guardian Name *</label>
+                              <input type="text" required value={formData.parentName} onChange={e => setFormData({...formData, parentName: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary" />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Phone Number *</label>
+                              <input type="tel" required placeholder="+92 XXX XXXXXXX" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary" />
+                            </div>
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Email Address *</label>
+                            <input type="email" required placeholder="parent@example.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary" />
+                          </div>
+                        </div>
+
+                        {/* Additional Section */}
+                        <div className="space-y-6 pt-4">
+                          <div className="flex items-center gap-3 pb-2 border-b border-gray-50">
+                            <MapPin size={18} className="text-[#00AEEF]" />
+                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Residential & History</span>
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Previous School (if any)</label>
+                            <input type="text" value={formData.previousSchool} onChange={e => setFormData({...formData, previousSchool: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary" />
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-[10px] font-black text-[#1B1464] uppercase tracking-widest ml-1">Home Address *</label>
+                            <textarea rows={2} required value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} className="w-full px-5 py-3.5 rounded-2xl bg-gray-50/50 border-2 border-transparent focus:border-[#00AEEF] focus:bg-white outline-none transition-all font-bold text-primary resize-none"></textarea>
+                          </div>
+                        </div>
+
+                        <button 
+                          type="submit" 
+                          disabled={isSubmitting}
+                          className={`w-full py-5 text-white font-black text-sm uppercase tracking-[0.4em] rounded-[1.5rem] transition-all flex items-center justify-center gap-3 shadow-2xl ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#1B1464] hover:bg-[#00AEEF] hover:scale-[1.02] shadow-[#1B1464]/20'}`}
+                        >
+                          {isSubmitting ? 'Transmitting...' : <><GraduationCap size={20} /> Submit Application</>}
+                        </button>
+                      </form>
+                    </>
+                  )}
+                </div>
+              </div>
+
             </div>
-
-            {submitted ? (
-              <div className="text-center py-16 bg-green-50 rounded-2xl">
-                <CheckCircle className="text-green-500 mx-auto mb-4" size={64} />
-                <h3 className="text-2xl font-bold text-green-700 mb-2">Application Submitted!</h3>
-                <p className="text-gray-600">Thank you for applying. We&apos;ll contact you shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="bg-gray-50 rounded-2xl p-8 md:p-12 shadow-lg space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Student&apos;s Full Name *</label>
-                    <input type="text" required value={formData.studentName} onChange={e => setFormData({...formData, studentName: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Parent/Guardian Name *</label>
-                    <input type="text" required value={formData.parentName} onChange={e => setFormData({...formData, parentName: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20" />
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Email Address *</label>
-                    <input type="email" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Phone Number *</label>
-                    <input type="tel" required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20" />
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Class Applying For *</label>
-                    <select required value={formData.classApplying} onChange={e => setFormData({...formData, classApplying: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary bg-white">
-                      <option value="">Select Class</option>
-                      {["Nursery", "KG", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10"].map(c => (
-                        <option key={c} value={c}>{c}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Date of Birth *</label>
-                    <input type="date" required value={formData.dob} onChange={e => setFormData({...formData, dob: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Gender *</label>
-                    <select required value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary bg-white">
-                      <option value="">Select</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Previous School</label>
-                  <input type="text" value={formData.previousSchool} onChange={e => setFormData({...formData, previousSchool: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20" />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Home Address *</label>
-                  <textarea rows={3} required value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 resize-none"></textarea>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Additional Notes</label>
-                  <textarea rows={3} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 resize-none"></textarea>
-                </div>
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className={`w-full py-4 text-white font-bold text-lg rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 hover:scale-[1.02]'}`}
-                >
-                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                  {!isSubmitting && <ArrowRight size={20} />}
-                </button>
-              </form>
-            )}
           </div>
         </div>
       </section>
-    </>
+
+      {/* Footer Minimal */}
+      <footer className="py-10 border-t border-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.5em]">Abexsun Education System &copy; 2026</p>
+        </div>
+      </footer>
+    </div>
   );
 }
