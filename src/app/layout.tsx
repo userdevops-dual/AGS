@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -10,6 +10,10 @@ import Image from "next/image";
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] });
+
+export const viewport: Viewport = {
+  themeColor: '#1B1464',
+}
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +52,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" />
         <link rel="shortcut icon" href="/logo.png" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        <meta name="theme-color" content="#1B1464" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white text-[15px]`}>
         <SplashScreen />
